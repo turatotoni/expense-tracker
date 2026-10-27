@@ -50,3 +50,9 @@ FROM expenses e
 JOIN categories c ON c.id = e.category_id
 WHERE e.user_id = 1
 GROUP BY c.name;
+
+-- 8. Najskuplji pojedinačni trošak svakog korisnika
+SELECT user_id, MAX(amount) AS max_amount
+FROM expenses
+GROUP BY user_id;
+
