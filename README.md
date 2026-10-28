@@ -46,6 +46,10 @@ Upute za pokretanje aplikacije bit će dodane s prvim endpointima.
 - `tests/` automatizirani testovi
 - `sql/` shema baze i izvještajni upiti
 
+## Shema baze
+
+![ER dijagram](docs/e-diagram.png)
+
 ## Autor
 
 [Tonino Turato] 
