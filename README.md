@@ -32,6 +32,7 @@ cd expense-tracker-api
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+fastapi dev app/main.py
 ```
 
 Upute za pokretanje aplikacije bit će dodane s prvim endpointima.
