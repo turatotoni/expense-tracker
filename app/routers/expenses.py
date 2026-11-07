@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from fastapi import APIRouter, HTTPException, Query, status
 
-from app.schemas.expense import Expense, ExpenseCreate
+from app.schemas.expense import Expense, ExpenseCreate, ExpenseSummary
 
 router = APIRouter(prefix="/expenses", tags=["expenses"])
 
@@ -41,6 +41,13 @@ def list_expenses(
         result = [e for e in result if e.spent_on <= date_to]
     return result[offset : offset + limit]
 
+@router.get("/summary", response_model=ExpenseSummary)
+def get_summary():
+    expenses = list(_expenses.values())
+    return ExpenseSummary(
+        number_of_expenses=len(expenses),
+        sum_of_expenses=sum((e.amount for e in expenses), Decimal("0"))
+    )
 
 @router.get("/{expense_id}", response_model=Expense)
 def get_expense(expense_id: int):
@@ -63,3 +70,4 @@ def update_expense(expense_id: int, data: ExpenseCreate):
 def delete_expense(expense_id: int):
     if _expenses.pop(expense_id, None) is None:
         raise HTTPException(status_code=404, detail="Expense not found")
+

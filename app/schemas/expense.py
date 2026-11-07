@@ -14,3 +14,7 @@ class ExpenseCreate(BaseModel):
 
 class Expense(ExpenseCreate):
     id: int
+
+class ExpenseSummary(BaseModel):
+    number_of_expenses: int
+    sum_of_expenses: Decimal
