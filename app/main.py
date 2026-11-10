@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 
-from app.routers import expenses
+from app.routers import categories, expenses
 
-app = FastAPI(title="Expense Tracker API", version="0.1.0")
+app = FastAPI(title="Expense Tracker API", version="0.2.0")
+app.include_router(categories.router)
 app.include_router(expenses.router)
 
 
