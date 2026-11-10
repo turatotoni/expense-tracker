@@ -1,11 +1,11 @@
 from datetime import date
 from decimal import Decimal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ExpenseCreate(BaseModel):
-    category: str = Field(min_length=1, max_length=100)
+    category_id: int
     amount: Decimal = Field(gt=0, max_digits=12, decimal_places=2)
     currency: str = Field(default="EUR", min_length=3, max_length=3)
     description: str | None = Field(default=None, max_length=255)
@@ -13,7 +13,10 @@ class ExpenseCreate(BaseModel):
 
 
 class Expense(ExpenseCreate):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
+    user_id: int
 
 class ExpenseSummary(BaseModel):
     number_of_expenses: int

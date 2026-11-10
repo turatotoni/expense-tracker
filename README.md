@@ -24,6 +24,13 @@ Projekt je nastao kao praktični način učenja modernog backend razvoja, od osn
 | DevOps | Docker, docker-compose, GitHub Actions |
 | Deploy | [Render / Fly.io / AWS] |
 
+## Konfiguracija
+
+```bash
+alembic upgrade head
+fastapi dev app/main.py
+```
+
 ## Pokretanje (lokalno)
 
 ```bash
