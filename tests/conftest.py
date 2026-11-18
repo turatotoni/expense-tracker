@@ -42,3 +42,14 @@ def client(db_session):
     with TestClient(app) as c:
         yield c
     app.dependency_overrides.clear()
+
+@pytest.fixture
+def auth_headers(client):
+    """Registrira korisnika, prijavi ga i vrati header s tokenom."""
+    client.post("/auth/register", json={"email": "ana@example.com", "password": "lozinka123"})
+    response = client.post(
+        "/auth/login",
+        data={"username": "ana@example.com", "password": "lozinka123"},
+    )
+    token = response.json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
