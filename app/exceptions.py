@@ -12,3 +12,6 @@ class ConflictError(AppError):
 
 class InvalidInputError(AppError):
     pass
+
+class UnauthorizedError(AppError):
+    pass

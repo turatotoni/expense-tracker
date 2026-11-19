@@ -10,6 +10,8 @@ from app.repositories.category_repository import CategoryRepository
 from app.services.category_service import CategoryService
 from app.repositories.expense_repository import ExpenseRepository
 from app.services.expense_service import ExpenseService
+from app.repositories.user_repository import UserRepository
+from app.services.auth_service import AuthService
 
 
 
@@ -34,3 +36,6 @@ def get_category_service(db: Session = Depends(get_db)) -> CategoryService:
 
 def get_expense_service(db: Session = Depends(get_db)) -> ExpenseService:
     return ExpenseService(ExpenseRepository(db), CategoryRepository(db))
+
+def get_auth_service(db: Session = Depends(get_db)) -> AuthService:
+    return AuthService(UserRepository(db))

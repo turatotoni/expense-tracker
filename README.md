@@ -53,6 +53,18 @@ Upute za pokretanje aplikacije bit će dodane s prvim endpointima.
 - `app/schemas/` Pydantic sheme
 - `tests/` automatizirani testovi
 - `sql/` shema baze i izvještajni upiti
+- `app/routers/` HTTP endpointi (tanki, samo HTTP)
+- `app/services/` poslovna pravila
+- `app/repositories/` upiti na bazu
+
+## Testiranje
+
+Treba zasebna baza `expense_tracker_test` i `TEST_DATABASE_URL` u `.env`.
+
+```bash
+pytest -v
+pytest --cov=app --cov-report=term-missing
+```
 
 ## Shema baze
 
